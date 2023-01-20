@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	<flow name="get-stateFlow" doc:id="3048018d-8f5d-4710-8938-a9ac8321920c" >
+		<logger level="INFO" doc:name="utils-retrieveFlow Logger" doc:id="ba25e3a0-ddc5-4b73-9840-bd50860b7342" message='#["The currentStatus of the application is retrieved in this flow"]'/>
+		<flow-ref doc:name="utils-retrieveFlow" doc:id="4db69231-7389-4a0c-9534-a5c00bafaaef" name="utils-retrieveFlow"/>
+		<logger level="INFO" doc:name="Logger" doc:id="ae963f0d-d466-471b-a23d-8a22b04d24c8" message='#["currentStatus:" ++ payload]'/>
+	</flow>
+</mule>

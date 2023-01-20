@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>76f5b765-b094-4992-9efb-e3584f19850e</groupId>
+  <artifactId>mule-statecontrol-sapi</artifactId>
+  <version>1.0.0</version>
+  <name>mule-statecontrol-sapi</name>
+  <properties>
+    <classifier>raml</classifier>
+    <main>mule-statecontrol-sapi.raml</main>
+    <status>published</status>
+    <originalFormatVersion>1.0</originalFormatVersion>
+    <apiVersion>v1</apiVersion>
+    <projectId>f53cd47d-6959-4c1c-8515-26186187ccf6</projectId>
+    <branchId>master</branchId>
+    <commitId>1ee4d059a22866e43fbf707d2b540d2e6d97c1ab</commitId>
+    <keywords/>
+    <type>rest-api</type>
+    <mainFile>mule-statecontrol-sapi.raml</mainFile>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>76f5b765-b094-4992-9efb-e3584f19850e</groupId>
+      <version>1.0.2</version>
+      <type>zip</type>
+      <classifier>raml-fragment</classifier>
+      <artifactId>commonlibrary</artifactId>
+    </dependency>
+  </dependencies>
+  <repositories>
+    <repository>
+      <id>anypoint-exchange</id>
+      <url>https://maven.anypoint.mulesoft.com/api/v3/maven</url>
+    </repository>
+  </repositories>
+</project>

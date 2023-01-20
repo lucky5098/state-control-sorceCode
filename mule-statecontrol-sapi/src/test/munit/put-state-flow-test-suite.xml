@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:os="http://www.mulesoft.org/schema/mule/os"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+	xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd
+http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd">
+	<munit:config name="put-state-flow-test-suite.xml" >
+		<munit:parameterizations file="test.yaml" />
+	</munit:config>
+	<munit:test name="put-state-flow-test-suite-put-state-FlowTest" doc:id="92ac2a58-879b-4861-bab7-e7553d09c0fc" description="Test">
+		<munit:execution >
+			<os:store doc:name="Store" doc:id="eb0ba8c4-9637-4829-8e77-ff3550e1d030" key="#['storeStatus']" objectStore="Object_store">
+				<os:value ><![CDATA[#[Mule::p('setStoreStatus')]]]></os:value>
+			</os:store>
+			<munit:set-event doc:name="Set Event" doc:id="c50f4721-4237-4648-86ed-09728c1b2d99" >
+				<munit:payload value="#[Mule::p('currentPayload')]" encoding="UTF-8" mediaType="application/json" />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to put-state-Flow" doc:id="661f1ea7-0a82-411f-a6c2-d990124d4902" name="put-state-Flow"/>
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:verify-call doc:name="Verify call" doc:id="d22c4ca4-aa73-4e3a-9c8f-e1c798d4bc41" processor="logger" atLeast="1">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Executed Logger New" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="b866dbe0-22ca-433a-a4f7-1e5a5af32420" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>

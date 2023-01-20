@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:os="http://www.mulesoft.org/schema/mule/os" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd">
+	<flow name="utils-storeFlow" doc:id="1942f363-6885-4422-9708-4052ee4d5f00" >
+		<os:store doc:name="Store" doc:id="416fe36d-2049-4c20-814c-523e93456e7d" key="storeStatus" objectStore="Object_store">
+			<os:value ><![CDATA[#[payload.currentStatus]]]></os:value>
+		</os:store>
+	</flow>
+	<flow name="utils-retrieveFlow" doc:id="4b0f3ef5-d67c-451b-9c80-ebada2dec207" >
+		<os:retrieve doc:name="Retrieve" doc:id="18fa65c0-dd6d-4991-b84d-f181fff576aa" key="#['storeStatus']" objectStore="Object_store">
+			<os:default-value ><![CDATA[#["waiting"]]]></os:default-value>
+		</os:retrieve>
+	</flow>
+</mule>

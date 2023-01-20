@@ -1,0 +1,43 @@
+{
+  "configs": [
+    "global.xml",
+    "mule-statecontrol-sapi.xml",
+    "implementation/get-stateFlow.xml",
+    "implementation/put-state-flow.xml",
+    "utils.xml"
+  ],
+  "secureProperties": [
+    "encrypt.key",
+    "anypoint.platform.client_id",
+    "anypoint.platform.client_secret"
+  ],
+  "redeploymentEnabled": true,
+  "name": "com.openlogix-corp.mule.api:mule-statecontrol-sapi:1.0.0-SNAPSHOT",
+  "minMuleVersion": "4.4.0",
+  "requiredProduct": "MULE_EE",
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedPackages": [],
+      "exportedResources": [
+        "application-types.xml",
+        "dwl/error.dwl",
+        "global.xml",
+        "implementation/get-stateFlow.xml",
+        "implementation/put-state-flow.xml",
+        "log4j2.xml",
+        "mule-statecontrol-sapi.xml",
+        "properties/common.yaml",
+        "properties/dev.yaml",
+        "properties/prod.yaml",
+        "properties/secure-dev.yaml",
+        "properties/secure-prod.yaml",
+        "utils.xml"
+      ]
+    }
+  },
+  "bundleDescriptorLoader": {
+    "id": "mule",
+    "attributes": {}
+  }
+}

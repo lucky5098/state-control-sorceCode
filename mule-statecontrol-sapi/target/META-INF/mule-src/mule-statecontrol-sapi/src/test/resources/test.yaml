@@ -1,0 +1,15 @@
+currentStatusWaitingBackendNull:
+ setStoreStatus: "waiting"
+ currentPayload: "{\r\n    \"currentStatus\" : \"started\"\r\n}" 
+
+currentStatusWaitingBackendStarted:
+ setStoreStatus: "locked"
+ currentPayload: "{\r\n    \"currentStatus\" : \"waiting\"\r\n}"
+ 
+currentStatusWaitingBackendLocked:
+ setStoreStatus: "started"
+ currentPayload: "{\r\n    \"currentStatus\" : \"locked\"\r\n}"
+
+currentStatusWaitingBackendWaiting:
+ setStoreStatus: "locked"
+ currentPayload: "{\r\n    \"currentStatus\" : \"waiting\"\r\n}"

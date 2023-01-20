@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	<flow name="put-state-Flow" doc:id="5ae777af-ed22-437e-b324-234e192733fa" >
+		<logger level="INFO" doc:name="Logger" doc:id="569fb905-d485-4810-ad59-403e6f106b99" message='#["This flow can be triggered to store the updated values"]'/>
+		<flow-ref doc:name="utils-retrieveFlow" doc:id="593f9c49-e621-46e1-867b-760dd0501e74" name="utils-retrieveFlow" target="storeStatus"/>
+		<choice doc:name="Choice" doc:id="2629c3a9-614c-4a24-8ad6-f919d65f54bd" >
+			<when expression="#[payload.currentStatus == vars.storeStatus]">
+				<logger level="INFO" doc:name="Logger" doc:id="be8b2175-4081-4b13-9a15-38cd08901cfd" message="#[payload]"/>
+			</when>
+			<otherwise >
+				<flow-ref doc:name="validate-and-update-state" doc:id="8b50dee2-00e0-4eca-a516-9d8925633ad4" name="validate-and-update-state"/>
+			</otherwise>
+		</choice>
+		<logger level="INFO" doc:name="Executed Logger New" doc:id="b866dbe0-22ca-433a-a4f7-1e5a5af32420" message='#["Flow Executed"]'/>
+	</flow>
+	<flow name="validate-and-update-state" doc:id="d53067ee-a7fb-4e92-85c5-022199e9a2ec" >
+		<set-variable value='#[output application/java
+---
+((payload.currentStatus == "waiting" and vars.storeStatus == "locked") 
+	or (payload.currentStatus == "started" and vars.storeStatus == "waiting")
+	or(payload.currentStatus == "locked" and vars.storeStatus == "started")
+)]' doc:name="isValidationPassed" doc:id="5d7fbc67-e8aa-4553-9029-788350269156" variableName="isValidationPassed"/>
+		<choice doc:name="Choice" doc:id="dba0b5be-ae59-41d8-86a3-9399d53bd4c9" >
+			<when expression="#[vars.isValidationPassed]">
+				<flow-ref doc:name="Flow Reference" doc:id="4e85b15d-d649-4a15-854c-1a2fabfb2fd9" name="utils-storeFlow"/>
+			</when>
+			<otherwise >
+				<raise-error doc:name="Raise error" doc:id="f689889c-8ec9-4593-a28b-22c2bd439265" type="INVALID:INPUT"/>
+			</otherwise>
+		</choice>
+	</flow>
+</mule>
